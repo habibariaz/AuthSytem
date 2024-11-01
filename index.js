@@ -14,10 +14,10 @@ app.use(express.static('public')); // Adjust the path to your static files
 // MongoDB Connection
 const mongoURI = "mongodb+srv://habibariaz:0000@authsystem.cpwmr.mongodb.net/?retryWrites=true&w=majority&appName=AuthSystem"
 mongoose.connect(mongoURI)
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('MongoDB connection error:', err)); () => {
-        console.log("Connected DB")
-    }
+    .then(() => {
+        console.log('MongoDB connected');
+    })
+    .catch(err => console.error('MongoDB connection error:', err));
 
 //user schema 
 const signUpSchema = new mongoose.Schema({
