@@ -29,6 +29,11 @@ const signUpSchema = new mongoose.Schema({
 
 const signUp = mongoose.model("SignUp", signUpSchema);
 
+app.get('*',(req,res,next)=>{
+  res.status(200).json({
+    message:'bad request'
+  })
+})
 
 app.post('/signup', async (req, res) => {
     try {
