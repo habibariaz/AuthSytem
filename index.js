@@ -29,6 +29,9 @@ const signUpSchema = new mongoose.Schema({
 
 const signUp = mongoose.model("SignUp", signUpSchema);
 
+app.get('/your-route', (req, res) => {
+    res.send('Response for your route');
+});
 
 app.post('/signup', async (req, res) => {
     try {
