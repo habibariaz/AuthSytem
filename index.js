@@ -10,7 +10,7 @@ const PORT = 8000;
 // Middleware
 app.use(cors());
 app.use(express.json());
-
+app.use(express.static('public')); // Adjust the path to your static files
 // MongoDB Connection
 const mongoURI = "mongodb+srv://habibariaz:0000@authsystem.cpwmr.mongodb.net/?retryWrites=true&w=majority&appName=AuthSystem"
 mongoose.connect(mongoURI)
