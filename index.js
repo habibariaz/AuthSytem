@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-const mongoURI = "mongodb+srv://habibariaz:0000@authsystem.cpwmr.mongodb.net/AuthSystem"
+const mongoURI = "mongodb+srv://habibariaz:0000@authsystem.cpwmr.mongodb.net/?retryWrites=true&w=majority&appName=AuthSystem"
 mongoose.connect(mongoURI)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err)); () => {
