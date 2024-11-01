@@ -94,7 +94,7 @@ app.post('/updatepassword', async (req, res) => {
         if (!user) {
             return res.status(401).json({ message: "Incorrect Email...!!!" });
         } else {
-            await signUp.updateOne({ email:email ,password: password })
+            await signUp.updateOne({ email: email }, { $set: { password: password } });
             res.status(200).json({ message: "Password updated successfully!" });
         }
 
