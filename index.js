@@ -7,8 +7,14 @@ require('dotenv').config();
 const app = express();
 const PORT = 8000;
 
+const corsOptions = {
+    origin: "https://auth-system-frontend-mu.vercel.app", // Replace with your frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+    credentials: true // Allows cookies to be sent
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.static('public')); // Adjust the path to your static files
 // MongoDB Connection
