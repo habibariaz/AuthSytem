@@ -18,7 +18,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.static('public')); // Adjust the path to your static files
 // MongoDB Connection
-const mongoURI = "mongodb+srv://habibariaz:0000@authsystem.cpwmr.mongodb.net/?retryWrites=true&w=majority&appName=AuthSystem"
+const mongoURI = "mongodb+srv://habibariaz:0000@authsystem.cpwmr.mongodb.net/AuthSystem"
 mongoose.connect(mongoURI)
     .then(() => {
         console.log('MongoDB connected');
