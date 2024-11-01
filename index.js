@@ -20,14 +20,14 @@ mongoose.connect(mongoURI)
     }
 
 //user schema 
-const signUpSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    password: String,
-    phone: String,
-})
+// const signUpSchema = new mongoose.Schema({
+//     name: String,
+//     email: String,
+//     password: String,
+//     phone: String,
+// })
 
-const signUp = mongoose.model("SignUp", signUpSchema);
+// const signUp = mongoose.model("SignUp", signUpSchema);
 
 app.get('*',(req,res,next)=>{
   res.status(200).json({
@@ -35,87 +35,87 @@ app.get('*',(req,res,next)=>{
   })
 })
 
-app.post('/signup', async (req, res) => {
-    try {
-        const { name, email, password, phone } = req.body;
-        let flag = 0;
-        // Check if user already exists
-        const existingUser = await signUp.findOne({ email: email });
-        if (existingUser) {
-            flag = 1;
-            return res.json({ msg1: false })
-        } else {
-            // Create a new user
-            const newUser = new signUp({ name, email, password, phone });
+// app.post('/signup', async (req, res) => {
+//     try {
+//         const { name, email, password, phone } = req.body;
+//         let flag = 0;
+//         // Check if user already exists
+//         const existingUser = await signUp.findOne({ email: email });
+//         if (existingUser) {
+//             flag = 1;
+//             return res.json({ msg1: false })
+//         } else {
+//             // Create a new user
+//             const newUser = new signUp({ name, email, password, phone });
 
-            // Save the new user
-            await newUser.save();
-            res.status(201).send({ msg2: true });
-        }
-    } catch (err) {
-        console.error(err);
-    }
-});
+//             // Save the new user
+//             await newUser.save();
+//             res.status(201).send({ msg2: true });
+//         }
+//     } catch (err) {
+//         console.error(err);
+//     }
+// });
 
-app.post('/signin', async (req, res) => {
-    try {
-        const { email, password } = req.body;
-
-
-        // Log input values for troubleshooting
-        // console.log('Received:', email, password);
-
-        const validation = await signUp.findOne({ email: email, password: password });
-
-        // Log the result of the database query
-        // console.log('Validation result:', validation);
-
-        if (!validation) {
-            return res.status(401).json({ message: "Invalid Details...!!!" });
-        }
-
-        res.status(200).json({ message: "Login successfully...!!!!" });
-    } catch (error) {
-        console.log(error)
-    }
-})
-
-app.post('/updatepassword', async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        console.log("Received: ",req.body)
-
-        //check user exists or not
-        const user = await signUp.findOne({ email: email });
-        console.log("Database USer: ", user)
-
-        if (!user) {
-            return res.status(401).json({ message: "Incorrect Email...!!!" });
-        } else {
-            await signUp.updateOne({ email:email ,password: password })
-            res.status(200).json({ message: "Password updated successfully!" });
-        }
+// app.post('/signin', async (req, res) => {
+//     try {
+//         const { email, password } = req.body;
 
 
+//         // Log input values for troubleshooting
+//         // console.log('Received:', email, password);
 
-    } catch (error) {
-        console.log(error)
-    }
-})
+//         const validation = await signUp.findOne({ email: email, password: password });
 
-app.post('/deleteuser', async (req, res) => {
-    try {
-        const { email } = req.body;
+//         // Log the result of the database query
+//         // console.log('Validation result:', validation);
 
-        const user = await signUp.findOneAndDelete({ email: email });
+//         if (!validation) {
+//             return res.status(401).json({ message: "Invalid Details...!!!" });
+//         }
 
-        if (user) {
-            return res.json({ message: "User Deleted Successfully...!!!" });
-        }
-    } catch (error) {
-        console.log(error)
-    }
-})
+//         res.status(200).json({ message: "Login successfully...!!!!" });
+//     } catch (error) {
+//         console.log(error)
+//     }
+// })
+
+// app.post('/updatepassword', async (req, res) => {
+//     try {
+//         const { email, password } = req.body;
+//         console.log("Received: ",req.body)
+
+//         //check user exists or not
+//         const user = await signUp.findOne({ email: email });
+//         console.log("Database USer: ", user)
+
+//         if (!user) {
+//             return res.status(401).json({ message: "Incorrect Email...!!!" });
+//         } else {
+//             await signUp.updateOne({ email:email ,password: password })
+//             res.status(200).json({ message: "Password updated successfully!" });
+//         }
+
+
+
+//     } catch (error) {
+//         console.log(error)
+//     }
+// })
+
+// app.post('/deleteuser', async (req, res) => {
+//     try {
+//         const { email } = req.body;
+
+//         const user = await signUp.findOneAndDelete({ email: email });
+
+//         if (user) {
+//             return res.json({ message: "User Deleted Successfully...!!!" });
+//         }
+//     } catch (error) {
+//         console.log(error)
+//     }
+// })
 
 
 
