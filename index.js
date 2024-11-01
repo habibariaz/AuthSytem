@@ -29,7 +29,7 @@ const signUpSchema = new mongoose.Schema({
 
 const signUp = mongoose.model("SignUp", signUpSchema);
 
-app.get('/your-route', (req, res) => {
+app.get('/', (req, res) => {
     res.send('Response for your route');
 });
 
