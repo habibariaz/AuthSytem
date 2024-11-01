@@ -87,11 +87,9 @@ app.post('/signin', async (req, res) => {
 app.post('/updatepassword', async (req, res) => {
     try {
         const { email, password } = req.body;
-        console.log("Received: ",req.body)
 
         //check user exists or not
         const user = await signUp.findOne({ email: email });
-        console.log("Database USer: ", user)
 
         if (!user) {
             return res.status(401).json({ message: "Incorrect Email...!!!" });
@@ -99,8 +97,6 @@ app.post('/updatepassword', async (req, res) => {
             await signUp.updateOne({ email:email ,password: password })
             res.status(200).json({ message: "Password updated successfully!" });
         }
-
-
 
     } catch (error) {
         console.log(error)
